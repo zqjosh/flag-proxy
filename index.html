@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jovaire — Roblox Scripter</title>
+  <meta name="description" content="Jovaire: full-time Roblox scripter specialising in pathfinding, economies, anti-cheat and secure, optimised Luau systems.">
+  <meta name="theme-color" content="#0b0d12">
+  <meta property="og:title" content="Jovaire — Roblox Scripter">
+  <meta property="og:description" content="Secure, optimised Luau systems: pathfinding, economies, anti-cheat, combat and simulators.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230b0d12'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='20' font-weight='700' text-anchor='middle' fill='%2334e0a1'%3EJ%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#top"><span class="brand-mark">J</span><span data-bind="handle"></span></a>
+      <nav class="nav-links" aria-label="Sections">
+        <a href="#about">About</a>
+        <a href="#work">Work</a>
+        <a href="#experience" data-requires="experience">Experience</a>
+        <a href="#commissions">Commissions</a>
+      </nav>
+      <a class="btn btn-primary btn-sm" href="#contact">Hire me</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+        <p class="eyebrow"><span class="status-dot"></span>Available for commissions</p>
+        <h1><span data-bind="handle"></span><span class="hero-role" data-bind="role"></span></h1>
+        <p class="lead" data-bind="tagline"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Get a quote</a>
+          <a class="btn btn-ghost" href="#work">See my work</a>
+        </div>
+        <ul class="chips" id="genre-chips" aria-label="Game types"></ul>
+        <dl class="stats" id="stats"></dl>
+        </div>
+        <div class="code-window" aria-hidden="true">
+          <div class="code-bar"><span></span><span></span><span></span><em>PurchaseService.server.luau</em></div>
+<pre><code><i>-- Never trust the client</i>
+<b>local</b> <u>Remote</u> = Remotes.Purchase
+
+<u>Remote</u>.OnServerEvent:Connect(<b>function</b>(player, itemId)
+    <b>if not</b> RateLimit:Check(player) <b>then return end</b>
+
+    <b>local</b> item = Catalog[itemId]
+    <b>if not</b> item <b>then return end</b>
+
+    <b>local</b> data = Profiles:Get(player)
+    <b>if</b> data.Coins &lt; item.Price <b>then return end</b>
+
+    data.Coins -= item.Price
+    Inventory:Grant(player, itemId)
+<b>end</b>)</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="wrap about-grid">
+        <div>
+          <p class="section-kicker">About</p>
+          <h2>Systems that hold up in a live game</h2>
+          <div class="prose" id="about-text"></div>
+        </div>
+        <div class="skills-card" id="skills"></div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="wrap">
+        <p class="section-kicker">Specialities</p>
+        <h2>What I'm best at</h2>
+        <div class="spec-grid" id="specialities"></div>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="wrap">
+        <p class="section-kicker">Work</p>
+        <h2>Showcase</h2>
+        <p class="section-sub">Clips of systems I've scripted, grouped by the kind of game they were built for.</p>
+        <div class="tabs" id="work-tabs" role="tablist" aria-label="Filter clips"></div>
+        <div id="work-groups"></div>
+        <div class="empty" id="work-empty" hidden>
+          <p>Showcase clips are being uploaded. Ask me on Discord and I'll send recent work directly.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section section-alt" data-requires="experience">
+      <div class="wrap">
+        <p class="section-kicker">Experience</p>
+        <h2>Games I've worked on</h2>
+        <div class="exp-list" id="experience-list"></div>
+      </div>
+    </section>
+
+    <section id="commissions" class="section">
+      <div class="wrap">
+        <p class="section-kicker">Commissions</p>
+        <h2>How working with me works</h2>
+        <p class="section-sub" data-bind="commissions.summary"></p>
+        <div class="terms-grid" id="terms"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="wrap contact-inner">
+        <h2>Got a project?</h2>
+        <p class="section-sub">Message me on Discord with what you need. I reply in English or Spanish.</p>
+        <div class="discord-card">
+          <svg class="discord-icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.3 4.4A19.6 19.6 0 0 0 15.4 3l-.6 1.3a18 18 0 0 0-5.6 0L8.6 3a19.5 19.5 0 0 0-4.9 1.5C.6 9.1-.3 13.6.1 18a19.8 19.8 0 0 0 6 3l1.3-2a12.7 12.7 0 0 1-2-1l.5-.4a14 14 0 0 0 12.2 0l.5.4c-.7.4-1.3.7-2 1l1.3 2a19.7 19.7 0 0 0 6-3c.5-5.1-.8-9.6-3.6-13.6ZM8 15.3c-1.2 0-2.2-1.1-2.2-2.4S6.8 10.5 8 10.5s2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Zm8 0c-1.2 0-2.2-1.1-2.2-2.4s1-2.4 2.2-2.4 2.2 1.1 2.2 2.4-1 2.4-2.2 2.4Z"/></svg>
+          <div class="discord-text">
+            <span class="discord-label">Discord</span>
+            <span class="discord-user" data-bind="discord"></span>
+          </div>
+          <button class="btn btn-primary" id="copy-discord" type="button">Copy username</button>
+        </div>
+        <p class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span>© <span id="year"></span> <span data-bind="handle"></span></span>
+      <span class="mono">Luau · Server-authoritative · Optimised</span>
+    </div>
+  </footer>
+
+  <script src="content.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
