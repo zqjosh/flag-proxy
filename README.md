@@ -4,7 +4,7 @@ Static portfolio site (plain HTML/CSS/JS, no build step). Works on GitHub Pages.
 
 ## Editing
 
-Everything you'd normally change lives in **`content.js`**: bio, skills, clips, experience, commission terms, Discord.
+Everything you'd normally change lives in **`content.js`**: bio, skills, clips, reviews, commission terms, Discord.
 You don't need to touch `index.html`, `styles.css` or `main.js`.
 
 ### Adding a clip
@@ -21,7 +21,7 @@ Add it to the right category's `clips` list in `content.js`:
 ```
 
 Supported `url` values: YouTube (incl. Shorts), Streamable, or a file in `media/` (`.mp4`, `.webm`, `.png`, `.jpg`, `.gif`, `.webp`).
-Empty categories and an empty `experience` list are hidden automatically.
+Empty categories and an empty `reviews` list are hidden automatically.
 
 ## Recording clips
 

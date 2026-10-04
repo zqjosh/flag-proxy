@@ -365,20 +365,29 @@ img, video, iframe { display: block; max-width: 100%; }
   color: var(--text-dim);
 }
 
-/* Experience */
-.exp-list { margin-top: 32px; display: grid; gap: 12px; }
-.exp-item {
-  padding: 20px 24px;
+/* Reviews */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-top: 40px;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 24px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   background: var(--surface);
 }
-.exp-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-.exp-title { font-size: 18px; font-weight: 650; text-decoration: none; }
-a.exp-title:hover { color: var(--accent); }
-.exp-period { font-size: 13px; color: var(--text-faint); flex: none; }
-.exp-meta { margin-top: 4px; color: var(--accent); font-size: 14px; font-weight: 500; }
-.exp-summary { margin-top: 8px; color: var(--text-dim); font-size: 15px; }
+.stars { display: flex; gap: 2px; font-size: 18px; line-height: 1; }
+.star { color: var(--border-strong); }
+.star.on { color: #ffc84a; }
+.review blockquote { flex: 1; margin: 14px 0 0; color: var(--text); font-size: 16px; line-height: 1.6; }
+.review figcaption { display: flex; flex-direction: column; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border); }
+.review-name { font-weight: 650; font-size: 15px; }
+.review-project { color: var(--text-faint); font-size: 13px; margin-top: 2px; }
 
 /* Commissions */
 .terms-grid {
@@ -441,7 +450,7 @@ a.exp-title:hover { color: var(--accent); }
   .hero { padding: 64px 0 56px; }
   .section { padding: 64px 0; }
   .spec-grid, .terms-grid { grid-template-columns: 1fr; }
-  .clip-grid { grid-template-columns: 1fr; }
+  .clip-grid, .review-grid { grid-template-columns: 1fr; }
   .stats { grid-template-columns: 1fr; width: 100%; }
   .stat + .stat { border-left: 0; border-top: 1px solid var(--border); }
   .stat { display: flex; justify-content: space-between; align-items: baseline; padding: 14px 18px; }
@@ -450,7 +459,6 @@ a.exp-title:hover { color: var(--accent); }
   .discord-card { flex-direction: column; border-radius: var(--radius); padding: 20px; width: 100%; gap: 12px; }
   .discord-text { align-items: center; margin: 0; }
   .discord-card .btn { width: 100%; }
-  .exp-head { flex-direction: column; gap: 2px; }
 }
 
 /* ---------- Hero code panel ---------- */

@@ -117,18 +117,17 @@ window.PORTFOLIO = {
   ],
 
   /*
-    Games / studios you've worked for. Leave empty to hide the section.
+    Client reviews. The section stays hidden until at least one is added.
+    Only add real reviews from real clients (ask them after a finished job).
     Example:
       {
-        game: "Burger Rush",
-        link: "https://www.roblox.com/games/123456789",
-        role: "Lead Scripter",
-        period: "2024",
-        summary: "Built the ordering, cooking and customer AI systems.",
-        stats: "2M+ visits"
+        name: "ClientName",
+        project: "Combat system — Sword Fighting Sim",
+        rating: 5,
+        quote: "Fast, clean code and great communication. Will hire again."
       },
   */
-  experience: [],
+  reviews: [],
 
   commissions: {
     summary: "Every project is different, so I quote per job. Message me on Discord with what you need and I'll get back to you with a price and timeline.",

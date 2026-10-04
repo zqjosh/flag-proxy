@@ -226,31 +226,28 @@
     }
   }
 
-  // ---------- Experience ----------
-  var experience = data.experience || [];
-  if (!experience.length) {
-    document.querySelectorAll('[data-requires="experience"]').forEach(function (node) {
+  // ---------- Reviews ----------
+  var reviews = (data.reviews || []).filter(function (r) { return r && r.quote && r.name; });
+  if (!reviews.length) {
+    document.querySelectorAll('[data-requires="reviews"]').forEach(function (node) {
       node.hidden = true;
     });
   } else {
-    var expList = document.getElementById("experience-list");
-    experience.forEach(function (item) {
-      var row = el("article", "exp-item");
-      var head = el("div", "exp-head");
-      var link = safeUrl(item.link);
-      var title = el(link ? "a" : "h3", "exp-title", item.game);
-      if (link) {
-        title.href = link;
-        title.target = "_blank";
-        title.rel = "noopener noreferrer";
-      }
-      head.appendChild(title);
-      if (item.period) head.appendChild(el("span", "exp-period mono", item.period));
-      row.appendChild(head);
-      var meta = [item.role, item.stats].filter(Boolean).join(" · ");
-      if (meta) row.appendChild(el("p", "exp-meta", meta));
-      if (item.summary) row.appendChild(el("p", "exp-summary", item.summary));
-      expList.appendChild(row);
+    var reviewList = document.getElementById("review-list");
+    reviews.forEach(function (review) {
+      var card = el("figure", "review");
+      var rating = Math.max(1, Math.min(5, Math.round(review.rating || 5)));
+      var stars = el("div", "stars");
+      stars.setAttribute("role", "img");
+      stars.setAttribute("aria-label", rating + " out of 5 stars");
+      for (var i = 0; i < 5; i++) stars.appendChild(el("span", i < rating ? "star on" : "star", "★"));
+      card.appendChild(stars);
+      card.appendChild(el("blockquote", null, "“" + review.quote + "”"));
+      var cap = el("figcaption");
+      cap.appendChild(el("span", "review-name", review.name));
+      if (review.project) cap.appendChild(el("span", "review-project", review.project));
+      card.appendChild(cap);
+      reviewList.appendChild(card);
     });
   }
 
